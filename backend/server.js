@@ -12,6 +12,26 @@
 
 
 
+const express= require('express');
+const dotenv=require('dotenv').config();
+const PORT=process.env.PORT || 8000;
+const app=express();
+const errorHandler =require('./middleware/errorMiddleware');
 
-// server.js is the entry point for the backend
-console.log("Server running...");
+//middlewares:
+//json() allows us to send raw json data
+app.use(express.json());
+
+//to accept url encoded form: urlencoded()
+app.use(express.urlencoded({extended:false}))
+
+
+app.get('/',(req,res)=>{
+    res.json({message:'Welcome to Support Desk API'});
+});
+
+app.use('/api/users',require('./routes/userRoutes'));
+
+app.use(errorHandler);
+//Error handler middleware (last middleware to use)
+app.listen(PORT,()=> console.log(`Server started on port ${PORT}`));
