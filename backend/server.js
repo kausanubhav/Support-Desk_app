@@ -34,9 +34,10 @@ app.use(express.urlencoded({extended:false}))
 app.get('/',(req,res)=>{
     res.json({message:'Welcome to Support Desk API'});
 });
-
+//Routes
 app.use('/api/users',require('./routes/userRoutes'));
+app.use('/api/tickets',require('./routes/ticketRoutes'));
 
-app.use(errorHandler);
 //Error handler middleware (last middleware to use)
+app.use(errorHandler);
 app.listen(PORT,()=> console.log(`Server started on port ${PORT}`));
