@@ -81,7 +81,7 @@ export default function NewTicket() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
-            <div className="form-group">
+            <div className="form-group my-2">
               <button className="btn btn-block">Submit</button>
             </div>
           </div>
